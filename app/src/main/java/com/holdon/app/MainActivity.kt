@@ -1,6 +1,6 @@
 /**
  * File: MainActivity.kt
- * Purpose: Main activity that hosts the Compose UI
+ * Purpose: Main activity that hosts the Compose UI with navigation
  * Entry point for the app's user interface
  */
 package com.holdon.app
@@ -15,14 +15,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.holdon.app.ui.screens.MainScreen
+import com.holdon.app.ui.screens.SettingsScreen
 import com.holdon.app.ui.theme.HoldOnTheme
 
 /**
  * Main Activity for HoldOn app
- * Handles permission requests and hosts the Compose UI
+ * Handles permission requests and hosts the Compose UI with navigation
  */
 class MainActivity : ComponentActivity() {
 
@@ -56,14 +61,14 @@ class MainActivity : ComponentActivity() {
         // Request necessary permissions
         requestPermissions()
 
-        // Set up Compose UI
+        // Set up Compose UI with navigation
         setContent {
             HoldOnTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    HoldOnNavigation()
                 }
             }
         }
@@ -100,5 +105,37 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         // Activity resumed - UI will automatically update through ViewModels
+    }
+}
+
+/**
+ * Navigation setup for the app
+ * Defines all routes and screen transitions
+ */
+@Composable
+fun HoldOnNavigation() {
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = "main"
+    ) {
+        // Main screen route
+        composable("main") {
+            MainScreen(
+                onNavigateToSettings = {
+                    navController.navigate("settings")
+                }
+            )
+        }
+
+        // Settings screen route
+        composable("settings") {
+            SettingsScreen(
+                onBackPressed = {
+                    navController.popBackStack()
+                }
+            )
+        }
     }
 }

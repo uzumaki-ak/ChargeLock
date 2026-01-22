@@ -100,7 +100,8 @@ dependencies {
 
     // Biometric
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
-
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.6")
     // Work Manager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 

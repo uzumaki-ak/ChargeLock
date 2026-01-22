@@ -26,10 +26,14 @@ import com.holdon.app.ui.viewmodel.MainViewModel
 /**
  * Main screen composable
  * Entry point of the app UI
+ *
+ * @param onNavigateToSettings Callback to navigate to settings screen
+ * @param viewModel ViewModel for managing state
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
+    onNavigateToSettings: () -> Unit,
     viewModel: MainViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -45,7 +49,7 @@ fun MainScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { /* TODO: Navigate to settings */ }) {
+                    IconButton(onClick = onNavigateToSettings) {
                         Icon(
                             imageVector = Icons.Default.Settings,
                             contentDescription = "Settings"
