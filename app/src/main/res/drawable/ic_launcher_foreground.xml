@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    File: ic_launcher_foreground.xml
+    Purpose: Defines the foreground layer of the app launcher icon
+    Simple shield icon representing protection
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:translateX="27"
+        android:translateY="27">
+        <path
+            android:fillColor="#2196F3"
+            android:pathData="M27,3L3,10.5L3,20.5C3,31.71 10.56,42.28 21,45.28C31.44,42.28 39,31.71 39,20.5L39,10.5L27,3ZM27,21L27,41.5C19.46,39.1 14,32 14,23.5L14,13.5L27,21Z"/>
+    </group>
+</vector>
